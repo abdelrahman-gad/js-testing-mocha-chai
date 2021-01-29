@@ -45,7 +45,14 @@ describe('#Person', () => {
           log("number:" , number);
       });
     });
-   
+    it.only('should not have 0 in a 1000 size samples',()=>{
+        const samples=new Array(1000);
+        _.fill(samples, 0 );
+        const rollDiceSamples =_.map(samples, item => Person.rollDice(1,20));
+        const anyZeros = _.filter(rollDiceSamples, item => item ===0 );
+        log(' zeros samples', anyZeros );
+        anyZeros.length.should.equal(0);      
+    });
   });
 });
 
