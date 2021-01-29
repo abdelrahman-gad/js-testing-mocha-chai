@@ -87,6 +87,16 @@ describe('#Person', () => {
         personB.armorBonus.should.equal(0);
     });
 
+    it("If we add a boomStick to my equipments , it is in the array", () =>{
+        const boomStick = new Weapon('boomstick', 0 , 1 , 12);
+        personA.addEquipment(boomStick);
+        personA.equipment.should.include(boomStick);
+    });
+    it('If we add a hotPants to a personA it should, it should have an armorBonus equals 3',()=>{
+       const hotPants = new Armor('hotPants',1);
+       personA.addEquipment(hotPants);
+       personA.armorBonus.should.equal(3);
+    });
  });
 
 });
