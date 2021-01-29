@@ -6,10 +6,11 @@ _     = require('lodash');
 
 const { expect } = require('chai');
 const {
-      alwaysTrue,
-      legitString 
+      getPerson,
+      Person
      } = require('./index');
 
+    //  basic code verify that testing boilerplate is working
 describe('#basic unit testing', ()=>{
     // unit tests goes in here 
     it('true should be true', ()=> {
@@ -22,28 +23,34 @@ describe('#basic unit testing', ()=>{
 });
 
 
-describe('#alwaystrue', () => {
-   it('should always return true',()=>{
-       alwaysTrue().should.be.true;
-   });
+describe('#index initial conditions ', () =>{
+    it('initial person is an object', () =>{
+        const person = getPerson();
+        _.isObject(person).should.be.true;
+    });
+    it.only('armorBonus by default is 0 wearing leather armor ', ()=>{
+        const person = getPerson();
+        person.armorBonus.should.equal(0);
+        // FIXME: should be 2 by default using leatherArmor
+        // fix is to not reset armorBonus to 0
+    } );
+});
 
-   it('expected to always return true', () =>{
-       expect(alwaysTrue()).to.be.true;
-   });
-
-   // negative test 
-   it('should not be false', ()=>{
-       alwaysTrue().should.not.be.false;
-   });
+describe('#Person', () => {
+  describe('#rollDice', () => {
+    it('should return a finite number (not NaN nor Infinity) ', () =>{
+      log('Person:', Person.rollDice  , () => {
+          const number = Person.rollDice(1,20);
+          _isFinite(number).should.be.true;
+          log("number:" , number);
+      });
+    });
+   
+  });
 });
 
 
-describe('#legitString', () =>{
-    it("should detect 'cow' as a legit string", ()=>{
-       legitString('cow').should.be.true;
-    });
-    it('undefined should not be false', () => { // negative test
-      legitString(undefined).should.be.false;
-    });
-});
+
+
+
 
