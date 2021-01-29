@@ -4,14 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha index.test.js"
+    "test": "nyc mocha index.test.js",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "showcoverage": "open coverage/lcov-report/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
     "chai": "^4.2.0",
-    "lodash": "^4.17.20",
-    "mocha": "^8.2.1"
+    "istanbul": "^0.4.5",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
   }
 }

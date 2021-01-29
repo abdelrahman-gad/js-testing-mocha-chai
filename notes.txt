@@ -1,0 +1,5 @@
+// nyc coverage
+"coverage": "nyc --reporter=lcov --reporter=text-lcov npm test"
+
+// istanbul coverage
+"coverage": "istanbul _mocha  index.test.js -x *.test.js"

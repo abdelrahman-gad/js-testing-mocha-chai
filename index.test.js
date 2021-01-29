@@ -74,16 +74,16 @@ describe('#Person', () => {
       personA=undefined;
       personB=undefined;
     });
-    it.only('person A hitPoints starts at 11', () =>{
+    it('person A hitPoints starts at 11', () =>{
       personA.hitPoints.should.equal(11);
     });
-    it.only('person B hitPoints starts at 11', () =>{
+    it('person B hitPoints starts at 11', () =>{
         personB.hitPoints.should.equal(11);
     });
-    it.only("personA's armorBonus  is 0", () =>{
+    it("personA's armorBonus  is 0", () =>{
         personA.armorBonus.should.equal(0);
     });
-    it.only("personB's armorBonus is  0", () =>{
+    it("personB's armorBonus is  0", () =>{
         personB.armorBonus.should.equal(0);
     });
 
