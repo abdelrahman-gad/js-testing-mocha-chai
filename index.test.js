@@ -7,7 +7,9 @@ _     = require('lodash');
 const { expect } = require('chai');
 const {
       getPerson,
-      Person
+      Person,
+      Armor,
+      Weapon
      } = require('./index');
 
     //  basic code verify that testing boilerplate is working
@@ -28,7 +30,7 @@ describe('#index initial conditions ', () =>{
         const person = getPerson();
         _.isObject(person).should.be.true;
     });
-    it.only('armorBonus by default is 0 wearing leather armor ', ()=>{
+    it('armorBonus by default is 0 wearing leather armor ', ()=>{
         const person = getPerson();
         person.armorBonus.should.equal(0);
         // FIXME: should be 2 by default using leatherArmor
@@ -45,15 +47,48 @@ describe('#Person', () => {
           log("number:" , number);
       });
     });
-    it.only('should not have 0 in a 1000 size samples',()=>{
+    it('should not have 0 in a 1000 size samples',()=>{
         const samples=new Array(1000);
         _.fill(samples, 0 );
         const rollDiceSamples =_.map(samples, item => Person.rollDice(1,20));
-        const anyZeros = _.filter(rollDiceSamples, item => item ===0 );
+        const anyZeros = _.filter(rollDiceSamples, item => item === 0 );
         log(' zeros samples', anyZeros );
         anyZeros.length.should.equal(0);      
     });
   });
+ describe('#attack', () => {
+     var personA;
+     var personB;
+     var createPerson= (name) => {
+        var leatherArmor = new Armor("Leather", 2);
+        var shortSword = new Weapon("Short Sword", 0, 1, 6)
+        return new Person(name, 2, 4, 1, [leatherArmor, shortSword]);
+     }
+    beforeEach(()=>{
+      personA = createPerson('Person A');
+      personB = createPerson('Person B');
+
+    });
+
+    afterEach(()=>{
+      personA=undefined;
+      personB=undefined;
+    });
+    it.only('person A hitPoints starts at 11', () =>{
+      personA.hitPoints.should.equal(11);
+    });
+    it.only('person B hitPoints starts at 11', () =>{
+        personB.hitPoints.should.equal(11);
+    });
+    it.only("personA's armorBonus  is 0", () =>{
+        personA.armorBonus.should.equal(0);
+    });
+    it.only("personB's armorBonus is  0", () =>{
+        personB.armorBonus.should.equal(0);
+    });
+
+ });
+
 });
 
 

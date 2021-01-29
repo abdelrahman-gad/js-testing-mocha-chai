@@ -104,5 +104,7 @@ setupPerson();
 const getPerson = () => person;
 module.exports = {
     getPerson,
-    Person
+    Person,
+    Armor,
+    Weapon
 };
